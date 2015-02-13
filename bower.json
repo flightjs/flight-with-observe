@@ -1,0 +1,22 @@
+{
+  "name": "flight-with-observe-state",
+  "version": "1.0.0",
+  "main": "lib/with-observe-state.js",
+  "dependencies": {
+    "flight": "latest"
+  },
+  "devDependencies": {
+    "jasmine-jquery": "~2.0.0",
+    "jasmine-flight": "latest",
+    "rxjs": "latest"
+  },
+  "ignore": [
+    ".gitignore",
+    ".gitattributes",
+    ".travis.yml",
+    "CONTRIBUTING.md",
+    "CHANGELOG.md",
+    "package.json",
+    "karma.conf.js"
+  ]
+}
