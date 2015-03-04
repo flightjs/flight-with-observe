@@ -7,7 +7,7 @@ A [Flight](https://github.com/flightjs/flight) mixin for filtering, transforming
 ## Installation
 
 ```bash
-bower install --save flight-with-observable-state
+bower install --save flight-with-observe-state
 ```
 
 ## Example
