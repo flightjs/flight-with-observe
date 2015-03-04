@@ -26,7 +26,7 @@ define(function (require) {
             observable.onNext(2);
         });
 
-        it ('should dispose of observables on teardown', function () {
+        it('should dispose of observables on teardown', function () {
             this.component.observe(observable);
 
             var called = 0;
@@ -73,7 +73,7 @@ define(function (require) {
 
             it('should only return state for requested keys', function (done) {
                 this.component.observeState(observableState, ['count']).subscribe(function (state) {
-                    expect(state.alive).toBe(undefined);
+                    expect(state.active).toBe(undefined);
                     expect(state.count).toBe(1);
                     done();
                 });
