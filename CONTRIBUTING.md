@@ -1,4 +1,4 @@
-# Contributing to flight-with-observe-state
+# Contributing to flight-with-observe
 
 Please take a moment to review this document in order to make the contribution
 process easy and effective for everyone involved.

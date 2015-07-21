@@ -1,14 +1,13 @@
 {
-  "name": "flight-with-observe-state",
-  "version": "1.0.0",
-  "main": "lib/with-observe-state.js",
+  "name": "flight-with-observe",
+  "main": "lib/with-observe.js",
   "dependencies": {
-    "flight": "latest"
+    "flight": "^1.2.0",
+    "rxjs": "^2.3.0"
   },
   "devDependencies": {
-    "jasmine-jquery": "~2.0.0",
     "jasmine-flight": "latest",
-    "rxjs": "latest"
+    "jasmine-jquery": "~2.1.0"
   },
   "ignore": [
     ".gitignore",
@@ -16,6 +15,7 @@
     ".travis.yml",
     "CONTRIBUTING.md",
     "CHANGELOG.md",
+    "test",
     "package.json",
     "karma.conf.js"
   ]

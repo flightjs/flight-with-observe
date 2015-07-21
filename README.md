@@ -1,13 +1,13 @@
-# flight-with-observe-state
+# flight-with-observe
 
-[![Build Status](https://secure.travis-ci.org/flightjs/flight-with-observe-state.svg)](http://travis-ci.org/flightjs/flight-with-observe-state)
+[![Build Status](https://secure.travis-ci.org/flightjs/flight-with-observe.svg)](http://travis-ci.org/flightjs/flight-with-observe)
 
 A [Flight](https://github.com/flightjs/flight) mixin for filtering, transforming, and subscribing to observable state.
 
 ## Installation
 
 ```bash
-bower install --save flight-with-observe-state
+bower install --save flight-with-observe
 ```
 
 ## Example
