@@ -1,5 +1,5 @@
 {
-  "name": "flight-with-observe-state",
+  "name": "flight-with-observe",
   "version": "1.0.0",
   "devDependencies": {
     "grunt": "~0.4.5",
@@ -16,14 +16,14 @@
     "test": "karma start --single-run --reporters dots --browsers Firefox",
     "watch-test": "karma start"
   },
-  "description": "A Flight mixin for filtering, transforming, and subscribing to observable state.",
-  "main": "lib/with-observe-state.js",
+  "description": "A Flight mixin for locally subscribing to an observable sequence.",
+  "main": "lib/with-observe.js",
   "directories": {
     "test": "test"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/flightjs/flight-with-observe-state.git"
+    "url": "https://github.com/flightjs/flight-with-observe.git"
   },
   "keywords": [
     "flight",
@@ -39,7 +39,7 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/flightjs/flight-with-observe-state/issues"
+    "url": "https://github.com/flightjs/flight-with-observe/issues"
   },
-  "homepage": "https://github.com/flightjs/flight-with-observe-state"
+  "homepage": "https://github.com/flightjs/flight-with-observe"
 }
