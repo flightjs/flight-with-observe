@@ -41,12 +41,11 @@
     "karma-webpack": "^1.7.0",
     "mocha": "^2.3.2",
     "object-assign": "^4.0.1",
-    "rx": "^4",
     "semantic-release": "^4.3.5",
     "webpack": "^1.12.1"
   },
-  "peerDependencies": {
-    "rx": "^4"
+  "dependencies": {
+    "rx": ">=2"
   },
   "repository": {
     "type": "git",
