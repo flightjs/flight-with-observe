@@ -13,6 +13,12 @@ describe('withObserve', function () {
         this.component = (new Component()).initialize(document.body);
     });
 
+    afterEach(function () {
+        try {
+            this.component.teardown();
+        } catch (e) {}
+    });
+
     it('should observe changed values', function (done) {
         this.component.observe(observable).subscribeOnNext(function (value) {
             if (value === 2) {
@@ -38,5 +44,17 @@ describe('withObserve', function () {
         this.component.teardown();
         subject.onNext('not subscribed');
         expect(called).toBe(2);
+    });
+
+    it('should end the stream on teardown', function () {
+        var onNextSpy = jasmine.createSpy('onNextSpy');
+        var onErrorSpy = jasmine.createSpy('onErrorSpy');
+        var onCompletedSpy = jasmine.createSpy('onCompletedSpy');
+        this.component.observe(observable).subscribe(onNextSpy, onErrorSpy, onCompletedSpy);
+        this.component.teardown();
+        subject.onNext(10);
+        expect(onNextSpy).not.toHaveBeenCalledWith(10);
+        expect(onErrorSpy).not.toHaveBeenCalled();
+        expect(onCompletedSpy).toHaveBeenCalled();
     });
 });
