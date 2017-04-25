@@ -9,6 +9,6 @@ module.exports = Object.assign(baseConfig, {
         path: constants.BUILD_DIRECTORY
     },
     externals: [
-        'rx'
+        'rxjs'
     ]
 });
