@@ -1,4 +1,4 @@
-import Rx from 'rx';
+import Rx from 'rxjs';
 import { component } from 'flight';
 import withObserve from '.';
 
@@ -20,41 +20,41 @@ describe('withObserve', function () {
     });
 
     it('should observe changed values', function (done) {
-        this.component.observe(observable).subscribeOnNext(function (value) {
+        this.component.observe(observable).subscribe(function (value) {
             if (value === 2) {
                 done();
             }
         });
-        subject.onNext(2);
+        subject.next(2);
     });
 
-    it('should dispose of observables on teardown', function () {
+    it('should unsubscribe from subscriptions on teardown', function () {
         this.component.observe(observable);
 
         var called = 0;
-        this.component.observe(observable).subscribeOnNext(function (value) {
+        this.component.observe(observable).subscribe(function (value) {
             called = called + 1;
         });
         expect(called).toBe(1);
 
-        subject.onNext('still subscribed');
+        subject.next('still subscribed');
         expect(called).toBe(2);
 
         // Teardown the component and check handler is not called again.
         this.component.teardown();
-        subject.onNext('not subscribed');
+        subject.next('not subscribed');
         expect(called).toBe(2);
     });
 
     it('should end the stream on teardown', function () {
-        var onNextSpy = jasmine.createSpy('onNextSpy');
-        var onErrorSpy = jasmine.createSpy('onErrorSpy');
-        var onCompletedSpy = jasmine.createSpy('onCompletedSpy');
-        this.component.observe(observable).subscribe(onNextSpy, onErrorSpy, onCompletedSpy);
+        var nextSpy = jasmine.createSpy('nextSpy');
+        var errorSpy = jasmine.createSpy('errorSpy');
+        var completedSpy = jasmine.createSpy('completedSpy');
+        this.component.observe(observable).subscribe(nextSpy, errorSpy, completedSpy);
         this.component.teardown();
-        subject.onNext(10);
-        expect(onNextSpy).not.toHaveBeenCalledWith(10);
-        expect(onErrorSpy).not.toHaveBeenCalled();
-        expect(onCompletedSpy).toHaveBeenCalled();
+        subject.next(10);
+        expect(nextSpy).not.toHaveBeenCalledWith(10);
+        expect(errorSpy).not.toHaveBeenCalled();
+        expect(completedSpy).toHaveBeenCalled();
     });
 });

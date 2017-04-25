@@ -4,37 +4,41 @@
  * patterns.
  * https://github.com/Reactive-Extensions/RxJS
  */
-import Rx from 'rx';
+import Rx from 'rxjs';
 
 export default function withObserve() {
     this.before('initialize', function () {
-        this.localDisposables = [];
+        this.localSubscriptions = [];
     });
 
     /**
-     * Observe a sequence is disposed of on teardown.
+     * Observe a sequence is unsubscribed from on teardown.
      *
      * Takes the sequence to observe.
      * Returns the observable sequence.
      */
     this.observe = function (upstream) {
         return Rx.Observable.create(observer => {
-            var upstreamDisposable = upstream.subscribe(observer);
-            // Create our own disposable so we can track teardown. When that happens,
-            // notify the observer.
-            var disposable = Rx.Disposable.create(function () {
-                upstreamDisposable.dispose();
-                observer.onCompleted();
+            var upstreamSubscription = upstream.subscribe(observer);
+            // Create our own subscription so we can track teardown. When that happens,
+            // notify the observer that the observable is completed (no more values),
+            // and unsubscribe.
+            var subscription = new Rx.Subscription(() => {
+                observer.complete();
+                upstreamSubscription.unsubscribe();
             });
-            // Store the disposable so that the mixin can dispose on teardown.
-            this.localDisposables.push(disposable);
-            return disposable;
-        }, upstream);
+            // Store the subscription so that the mixin can unsubscribe on teardown.
+            this.localSubscriptions.push(subscription);
+            // Returning the subscription means that manually unsubscribing from
+            // the observable returned from this.observe will cause the upstreamSubscription
+            // to complete and then unsubscribe.
+            return subscription;
+        });
     };
 
     this.before('teardown', function () {
-        this.localDisposables.forEach(function (disposable) {
-            disposable.dispose();
+        this.localSubscriptions.forEach(subscription => {
+            subscription.unsubscribe();
         });
     });
 }
