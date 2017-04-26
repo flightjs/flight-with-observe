@@ -15,7 +15,7 @@ npm install --save flight-with-observe
 To develop this module, clone the repository and run:
 
 ```
-$ npm install && npm test
+$ yarn install && yarn test
 ```
 
 If the tests pass, you have a working environment. You shouldn't need any external dependencies.
